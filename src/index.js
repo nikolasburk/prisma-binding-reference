@@ -85,6 +85,35 @@ const resolvers = {
         info,
       )
     },
+    updateBio: (_, args, context, info) => {
+      return context.prisma.mutation.createProfile(
+        {
+          data: {
+            bio: args.bio,
+            user: {
+              connect: { id: args.userId }
+            }
+          },
+        },
+        info,
+      )
+    },
+    addPostToCategories: (_, args, context, info) => {
+      const ids = args.categoryIds.map(id => { id } )
+      return context.prisma.mutation.updatePost(
+        {
+          data: {
+            category: {
+              connect: ids
+            }
+          },
+          where: {
+            id: args.postId
+          }
+        },
+        info,
+      )
+    },
   },
 }
 

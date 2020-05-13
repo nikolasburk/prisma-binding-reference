@@ -1,5 +1,5 @@
 # source: http://localhost:4466
-# timestamp: Wed May 13 2020 11:19:12 GMT+0200 (Central European Summer Time)
+# timestamp: Wed May 13 2020 13:51:45 GMT+0200 (Central European Summer Time)
 
 type AggregateCategory {
   count: Int!
@@ -41,7 +41,7 @@ type CategoryConnection {
 input CategoryCreateInput {
   id: ID
   name: String!
-  posts: PostCreateManyWithoutCategoryInput
+  posts: PostCreateManyWithoutCategoriesInput
 }
 
 input CategoryCreateManyWithoutPostsInput {
@@ -205,7 +205,7 @@ input CategorySubscriptionWhereInput {
 
 input CategoryUpdateInput {
   name: String
-  posts: PostUpdateManyWithoutCategoryInput
+  posts: PostUpdateManyWithoutCategoriesInput
 }
 
 input CategoryUpdateManyDataInput {
@@ -419,7 +419,7 @@ type Post implements Node {
   content: String
   published: Boolean!
   author: User
-  category(where: CategoryWhereInput, orderBy: CategoryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Category!]
+  categories(where: CategoryWhereInput, orderBy: CategoryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Category!]
 }
 
 """A connection to a list of items."""
@@ -438,7 +438,7 @@ input PostCreateInput {
   content: String
   published: Boolean
   author: UserCreateOneWithoutPostsInput
-  category: CategoryCreateManyWithoutPostsInput
+  categories: CategoryCreateManyWithoutPostsInput
 }
 
 input PostCreateManyWithoutAuthorInput {
@@ -446,8 +446,8 @@ input PostCreateManyWithoutAuthorInput {
   connect: [PostWhereUniqueInput!]
 }
 
-input PostCreateManyWithoutCategoryInput {
-  create: [PostCreateWithoutCategoryInput!]
+input PostCreateManyWithoutCategoriesInput {
+  create: [PostCreateWithoutCategoriesInput!]
   connect: [PostWhereUniqueInput!]
 }
 
@@ -456,10 +456,10 @@ input PostCreateWithoutAuthorInput {
   title: String!
   content: String
   published: Boolean
-  category: CategoryCreateManyWithoutPostsInput
+  categories: CategoryCreateManyWithoutPostsInput
 }
 
-input PostCreateWithoutCategoryInput {
+input PostCreateWithoutCategoriesInput {
   id: ID
   title: String!
   content: String
@@ -721,7 +721,7 @@ input PostUpdateInput {
   content: String
   published: Boolean
   author: UserUpdateOneWithoutPostsInput
-  category: CategoryUpdateManyWithoutPostsInput
+  categories: CategoryUpdateManyWithoutPostsInput
 }
 
 input PostUpdateManyDataInput {
@@ -748,16 +748,16 @@ input PostUpdateManyWithoutAuthorInput {
   upsert: [PostUpsertWithWhereUniqueWithoutAuthorInput!]
 }
 
-input PostUpdateManyWithoutCategoryInput {
-  create: [PostCreateWithoutCategoryInput!]
+input PostUpdateManyWithoutCategoriesInput {
+  create: [PostCreateWithoutCategoriesInput!]
   connect: [PostWhereUniqueInput!]
   set: [PostWhereUniqueInput!]
   disconnect: [PostWhereUniqueInput!]
   delete: [PostWhereUniqueInput!]
-  update: [PostUpdateWithWhereUniqueWithoutCategoryInput!]
+  update: [PostUpdateWithWhereUniqueWithoutCategoriesInput!]
   updateMany: [PostUpdateManyWithWhereNestedInput!]
   deleteMany: [PostScalarWhereInput!]
-  upsert: [PostUpsertWithWhereUniqueWithoutCategoryInput!]
+  upsert: [PostUpsertWithWhereUniqueWithoutCategoriesInput!]
 }
 
 input PostUpdateManyWithWhereNestedInput {
@@ -769,10 +769,10 @@ input PostUpdateWithoutAuthorDataInput {
   title: String
   content: String
   published: Boolean
-  category: CategoryUpdateManyWithoutPostsInput
+  categories: CategoryUpdateManyWithoutPostsInput
 }
 
-input PostUpdateWithoutCategoryDataInput {
+input PostUpdateWithoutCategoriesDataInput {
   title: String
   content: String
   published: Boolean
@@ -784,9 +784,9 @@ input PostUpdateWithWhereUniqueWithoutAuthorInput {
   data: PostUpdateWithoutAuthorDataInput!
 }
 
-input PostUpdateWithWhereUniqueWithoutCategoryInput {
+input PostUpdateWithWhereUniqueWithoutCategoriesInput {
   where: PostWhereUniqueInput!
-  data: PostUpdateWithoutCategoryDataInput!
+  data: PostUpdateWithoutCategoriesDataInput!
 }
 
 input PostUpsertWithWhereUniqueWithoutAuthorInput {
@@ -795,10 +795,10 @@ input PostUpsertWithWhereUniqueWithoutAuthorInput {
   create: PostCreateWithoutAuthorInput!
 }
 
-input PostUpsertWithWhereUniqueWithoutCategoryInput {
+input PostUpsertWithWhereUniqueWithoutCategoriesInput {
   where: PostWhereUniqueInput!
-  update: PostUpdateWithoutCategoryDataInput!
-  create: PostCreateWithoutCategoryInput!
+  update: PostUpdateWithoutCategoriesDataInput!
+  create: PostCreateWithoutCategoriesInput!
 }
 
 input PostWhereInput {
@@ -979,9 +979,9 @@ input PostWhereInput {
   """All values that are not equal to given value."""
   published_not: Boolean
   author: UserWhereInput
-  category_every: CategoryWhereInput
-  category_some: CategoryWhereInput
-  category_none: CategoryWhereInput
+  categories_every: CategoryWhereInput
+  categories_some: CategoryWhereInput
+  categories_none: CategoryWhereInput
 }
 
 input PostWhereUniqueInput {

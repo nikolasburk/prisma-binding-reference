@@ -16,7 +16,7 @@ type Post {
   content: String
   published: Boolean! @default(value: false)
   author: User @relation(link: TABLE)
-  category: [Category!]!
+  categories: [Category!]!
 }
 
 type Profile {

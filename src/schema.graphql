@@ -1,0 +1,19 @@
+# import Post from './generated/prisma.graphql'
+# import User from './generated/prisma.graphql'
+# import Category from './generated/prisma.graphql'
+
+type Query {
+  posts(searchString: String): [Post!]!
+  user(id: ID!): User
+  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
+  allCategories: [Category!]!
+}
+
+type Mutation {
+  createDraft(authorId: ID!, title: String!, content: String!): Post
+  publish(id: ID!): Post
+  deletePost(id: ID!): Post
+  signup(name: String!, email: String!): User!
+  addBio(userId: String!, bio: String!): User
+  addPostToCategories(postId: String!, categoryIds: [String!]!): Post
+}

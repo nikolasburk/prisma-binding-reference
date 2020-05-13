@@ -1,0 +1,7 @@
+endpoint: http://localhost:4466
+datamodel: datamodel.prisma
+
+hooks:
+  post-deploy:
+    - echo "Deployment finished"
+    - yarn graphql get-schema --project prisma

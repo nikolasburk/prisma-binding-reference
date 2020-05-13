@@ -1,0 +1,14 @@
+{
+  "devDependencies": {
+    "graphql-cli": "^3.0.14",
+    "nodemon": "^2.0.3",
+    "prisma1": "^1.34.11"
+  },
+  "dependencies": {
+    "graphql-yoga": "^1.18.3",
+    "prisma-binding": "^2.3.16"
+  },
+  "scripts": {
+    "dev": "yarn nodemon src/index.js"
+  }
+}

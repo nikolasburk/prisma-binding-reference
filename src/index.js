@@ -86,24 +86,25 @@ const resolvers = {
       )
     },
     updateBio: (_, args, context, info) => {
-      return context.prisma.mutation.createProfile(
+      return context.prisma.mutation.updateUser(
         {
           data: {
-            bio: args.bio,
-            user: {
-              connect: { id: args.userId }
+            profile: {
+              update: { bio: args.bio }
             }
           },
+          where: { id: args.userId }
         },
         info,
       )
     },
     addPostToCategories: (_, args, context, info) => {
-      const ids = args.categoryIds.map(id => { id } )
+      const ids = args.categoryIds.map(id => ({ id }))
+      console.log(args, ids)
       return context.prisma.mutation.updatePost(
         {
           data: {
-            category: {
+            categories: {
               connect: ids
             }
           },

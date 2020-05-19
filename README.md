@@ -1,5 +1,12 @@
 # Reference for `prisma-binding` projects
 
+## Usage
+
+```
+yarn
+yarn dev
+```
+
 ## Resources
 
 - [Build a GraphQL server with Prisma 1 and `prisma-binding`](https://v1.prisma.io/docs/1.13/tutorials/build-graphql-servers/development/build-a-graphql-server-with-prisma-ohdaiyoo6c)
